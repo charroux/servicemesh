@@ -6,6 +6,53 @@ This is a step-by-step guide how to run the example:
 
 minikube start --cpus=2 --memory=5000 --driver=docker
 
+## Install Istio
+
+https://istio.io/latest/docs/setup/getting-started/
+
+cd Documents/istio-1.17.0    
+
+export PATH=$PWD/bin:$PATH    
+
+istioctl install --set profile=demo -y   
+
+kubectl label namespace default istio-injection=enabled
+
+kubectl apply -f samples/addons
+
+## 
+
+kubectl label namespace default istio-injection=enabled
+
+minikube docker-env
+
+eval $(minikube docker-env)  
+
+./gradlew build
+
+./docker-build.sh  
+
+kubectl apply -f infrastructure.yaml
+
+kubectl apply -f microservices.yaml
+
+kubectl get pods
+
+kubectl logs [pod name] carservice
+
+kubectl exec -it [pod name] -- /bin/sh
+
+ls -> see jar file -> exit
+
+minikube service carservice --url
+
+http://127.0.0.1:port/hello
+
+./ingress-url.sh ne fonctionne pas
+
+./ingress-forward.sh
+
+http://localhost:ingressport/carservice/hello
 
 ## Installation Minikube
 

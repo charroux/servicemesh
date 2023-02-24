@@ -78,4 +78,4 @@ spec:
     - destination:
         port:
           number: 80
-        host: carService.default.svc.cluster.local
+        host: carservice.default.svc.cluster.local
