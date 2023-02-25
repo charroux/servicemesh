@@ -54,6 +54,12 @@ http://127.0.0.1:port/hello
 
 http://localhost:ingressport/carservice/hello
 
+## Google cloud
+
+Set a Kubernetes Cluster in Google cloud
+
+export PROJECT_ID=...
+
 ## Installation Minikube
 
 * Install
