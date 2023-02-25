@@ -54,6 +54,10 @@ http://127.0.0.1:port/hello
 
 http://localhost:ingressport/carservice/hello
 
+kubectl delete -f infrastructure.yaml
+
+kubectl delete -f microservices.yaml
+
 ## Google cloud
 
 Set a Kubernetes Cluster in Google cloud

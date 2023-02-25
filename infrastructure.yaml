@@ -1,3 +1,69 @@
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: postgres
+    version: "1.0"
+  name: postgres
+  annotations:
+    sidecar.istio.io/inject: "false"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: carservice-postgres:1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "dbuser"
+            - name: POSTGRES_PASSWORD
+              value: "dbpass"
+          resources: {}
+          volumeMounts:
+            - name: postgres
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres
+          emptyDir: {}
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: postgres
+  name: postgres
+spec:
+  ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    app: postgres
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
