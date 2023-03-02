@@ -26,6 +26,8 @@ kubectl label namespace default istio-injection=enabled
 
 minikube docker-env
 
+?? eval $(minikube -p minikube docker-env)
+
 eval $(minikube docker-env)  
 
 ./gradlew build

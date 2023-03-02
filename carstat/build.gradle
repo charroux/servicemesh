@@ -1,8 +1,8 @@
 plugins {
 	id 'java'
+	id 'com.google.protobuf' version '0.8.14'
 	id 'org.springframework.boot' version '3.0.3'
 	id 'io.spring.dependency-management' version '1.1.0'
-	id 'com.google.protobuf' version '0.8.14'
 }
 
 group = 'com.charroux'
@@ -30,14 +30,16 @@ protobuf {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.postgresql:postgresql'
+
+	implementation 'io.grpc:grpc-netty-shaded:1.34.1'
 	implementation 'io.grpc:grpc-protobuf:1.34.1'
 	implementation 'io.grpc:grpc-stub:1.34.1'
-	implementation 'io.grpc:grpc-netty-shaded:1.34.1'
 	compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
