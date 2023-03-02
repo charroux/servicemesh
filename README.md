@@ -54,7 +54,14 @@ http://127.0.0.1:port/hello
 
 ./ingress-forward.sh
 
-http://localhost:ingressport/carservice/hello
+http://localhost:ingressport/carservice/cars
+
+http://localhost:ingressport/carservice/agreements
+
+curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":2}' http://localhost:31380/carservice/cars
+
+curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":1}' http://localhost:31380/carservice/cars
+
 
 kubectl delete -f infrastructure.yaml
 
