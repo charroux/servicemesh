@@ -14,7 +14,15 @@ Both services access the same database (PostgreSQL) but different tables.
 
 <img src="images/carservicearchi.png">
 
-### The Rest web service
+### Car service is the gRPC client of carstat:
+
+<img src="images/carservicegrpcclient.png">
+
+### Car service implements the Saga pattern
+
+<img src="images/sagapattern.png">
+
+### The Car Rest web service
 
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
 
@@ -26,15 +34,10 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/c
 
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/entity/RentalAgreement.java
 
-### The service 
 
-The service is a gRPC client:
 
-<img src="images/carservicegrpcclient.png">
 
-The service implments the Saga pattern
-
-<img src="images/sagapattern.png">
+### The code of car service
 
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
 
