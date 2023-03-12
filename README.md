@@ -61,11 +61,11 @@ http://localhost:20001/
 
 http://localhost:ingressport/carservice/cars
 
-[<img src="images/kiali1.png">]
+<img src="images/kiali1.png">
 
 curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":2}' http://localhost:31380/carservice/cars
 
-[<img src="images/kiali2.png">]
+<img src="images/kiali2.png">
 
 kubectl -n istio-system port-forward deployment/grafana 3000:3000
 
