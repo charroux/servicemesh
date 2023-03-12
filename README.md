@@ -54,7 +54,29 @@ http://127.0.0.1:port/hello
 
 ./ingress-forward.sh
 
+
+kubectl -n istio-system port-forward deployment/kiali 20001:20001
+
+http://localhost:20001/
+
 http://localhost:ingressport/carservice/cars
+
+[<img src="images/kiali1.png">]
+
+curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":2}' http://localhost:31380/carservice/cars
+
+[<img src="images/kiali2.png">]
+
+kubectl -n istio-system port-forward deployment/grafana 3000:3000
+
+http://localhost:3000/
+
+[<img src="images/graphana_resources.png">]
+
+[<img src="images/graphana_istio_dashboard.png">]
+
+[<img src="images/graphana-envoy.png">]
+
 
 http://localhost:ingressport/carservice/agreements
 
