@@ -1,4 +1,42 @@
-# serviceMesh
+# Car Rental Service
+
+## Application architecture
+
+<img src="images/kiali1.png">
+
+carservice is a Rest web service.
+
+carstat is a gRPC web service.
+
+Both services access the same database (PostgreSQL) but different tables.
+
+## Architecture of the carservice app
+
+<img src="images/carservicearchi.png">
+
+### The Rest web service
+
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
+
+### Car
+
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/entity/Car.java
+
+### Rental agreement
+
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/entity/RentalAgreement.java
+
+### The service 
+
+The service is a gRPC client:
+
+<img src="images/carservicegrpcclient.png">
+
+The service implments the Saga pattern
+
+<img src="images/sagapattern.png">
+
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
 
 # How to Run
 
