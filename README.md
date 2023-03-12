@@ -22,8 +22,12 @@ https://github.com/charroux/servicemesh/tree/main/carservice/src/main/proto
 
 ## Customer gRPC server
 
+https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/charroux/carstat/CarRentalServiceImpl.java
 
-## Application architecture
+
+# Service Mesh with Istio
+
+## Dashboard provided bt Kiali
 
 <img src="images/kiali1.png">
 
