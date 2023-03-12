@@ -2,17 +2,25 @@
 
 <img src="images/carservicearchi.png">
 
-### The car service Rest web service
+## The car service Rest web service
 
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
 
-### Car service
+## Car service
 
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
+
+### Car service gRPC service contract defining a bi-directional streaming
+
+https://github.com/charroux/servicemesh/tree/main/carservice/src/main/proto
+
+
 
 ### Car service implements the Saga pattern
 
 <img src="images/sagapattern.png">
+
+## Customer gRPC server
 
 
 ## Application architecture
