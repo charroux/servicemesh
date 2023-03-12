@@ -1,5 +1,11 @@
 # Car Rental Service
 
+<img src="images/carservicearchi.png">
+
+### The car service Rest web service
+
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
+
 ## Application architecture
 
 <img src="images/kiali1.png">
@@ -12,7 +18,7 @@ Both services access the same database (PostgreSQL) but different tables.
 
 ## Architecture of the carservice app
 
-<img src="images/carservicearchi.png">
+
 
 ### Car service is the gRPC client of carstat:
 
@@ -22,9 +28,6 @@ Both services access the same database (PostgreSQL) but different tables.
 
 <img src="images/sagapattern.png">
 
-### The Car Rest web service
-
-https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
 
 ### Car
 
