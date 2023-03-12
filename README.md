@@ -71,11 +71,11 @@ kubectl -n istio-system port-forward deployment/grafana 3000:3000
 
 http://localhost:3000/
 
-[<img src="images/graphana_resources.png">]
+<img src="images/graphana_resources.png">
 
-[<img src="images/graphana_istio_dashboard.png">]
+<img src="images/graphana_istio_dashboard.png">
 
-[<img src="images/graphana-envoy.png">]
+<img src="images/graphana-envoy.png">
 
 
 http://localhost:ingressport/carservice/agreements
