@@ -6,6 +6,15 @@
 
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
 
+### Car service
+
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
+
+### Car service implements the Saga pattern
+
+<img src="images/sagapattern.png">
+
+
 ## Application architecture
 
 <img src="images/kiali1.png">
@@ -24,9 +33,6 @@ Both services access the same database (PostgreSQL) but different tables.
 
 <img src="images/carservicegrpcclient.png">
 
-### Car service implements the Saga pattern
-
-<img src="images/sagapattern.png">
 
 
 ### Car
@@ -40,9 +46,6 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/c
 
 
 
-### The code of car service
-
-https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
 
 # How to Run
 
