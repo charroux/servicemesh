@@ -27,9 +27,15 @@ https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/char
 
 # Service Mesh with Istio
 
-## Dashboard provided bt Kiali
+## Dashboard provided by Kiali
 
 <img src="images/kiali1.png">
+
+## Kubernetes PostgreSQL deployment/service and Ingress gataway
+
+https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
+
+
 
 carservice is a Rest web service.
 
