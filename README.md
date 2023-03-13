@@ -194,7 +194,7 @@ kubectl -n istio-system port-forward deployment/kiali 20001:20001
 ```
 Launch the console: http://localhost:20001/
 
-Active again carservice, then inspect the cluster in Kiali.
+Active again carservice: http://localhost:ingressport/carservice/cars, hen inspect the cluster in Kiali.
 http://localhost:ingressport/carservice/cars
 
 <img src="images/kiali1.png">
