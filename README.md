@@ -46,9 +46,7 @@ Disable the circuit breaker using:
 kubectl delete -f circuit-breaker.yaml
 ```
 
-Inspect the circuit break configuration: 
-
-
+Inspect the circuit break configuration: https://github.com/charroux/servicemesh/blob/main/circuit-breaker.yaml
 
 
 ## Kubernetes PostgreSQL deployment/service and Ingress gataway
@@ -88,62 +86,113 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/c
 # How to Run
 
 This is a step-by-step guide how to run the example:
-
+```
 minikube start --cpus=2 --memory=5000 --driver=docker
-
+```
 ## Install Istio
 
 https://istio.io/latest/docs/setup/getting-started/
 
+
+```
 cd Documents/istio-1.17.0    
-
 export PATH=$PWD/bin:$PATH    
-
 istioctl install --set profile=demo -y   
-
+```
+Enable auto-injection of the Istio side-cars when the pods are started:
+```
 kubectl label namespace default istio-injection=enabled
-
+```
+Install the Istio addons (Kiali, Prometheus, Jaeger, Grafana):
+```
 kubectl apply -f samples/addons
-
+```
 ## 
-
+Enable auto-injection of the Istio side-cars when the pods are started:
+```
 kubectl label namespace default istio-injection=enabled
+```
 
+Configure Docker so that it uses the Kubernetes cluster:
+```
 minikube docker-env
-
-?? eval $(minikube -p minikube docker-env)
-
+eval $(minikube -p minikube docker-env)
 eval $(minikube docker-env)  
-
+```
+Build the carservice app:
+```
+cd carservice
 ./gradlew build
-
+cd ..
+```
+Build the customer app:
+```
+cd carstat
+./gradlew build
+cd ..
+```
+Build the 3 Docker images (carservice, customer and Postgresql):
+```
 ./docker-build.sh  
-
+```
+Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gataway:
+```
 kubectl apply -f infrastructure.yaml
+```
+See the configuration: https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
 
+Launch:
+- Kubernetes deployment and service for carcervice
+- Istio Virtual Service for carservice (A VirtualService defines a set of traffic routing rules to apply when a host is addressed)
+- Kubernetes deployment and service for the customer app
+- Istio Virtual Service for the customer app
+```
 kubectl apply -f microservices.yaml
+```
+See the configuration: https://github.com/charroux/servicemesh/blob/main/microservices.yaml
 
+Inspect the logs of the pods:
+```
 kubectl get pods
-
+```
+```
 kubectl logs [pod name] carservice
-
+```
+Enter the Docker containers:
+```
 kubectl exec -it [pod name] -- /bin/sh
-
-ls -> see jar file -> exit
-
+```
+```
+ls
+```
+You should view thec java jar file.
+```
+exit
+```
+Use Minikube to reach the carservice:
+```
 minikube service carservice --url
-
-http://127.0.0.1:port/hello
-
-./ingress-url.sh ne fonctionne pas
-
+```
+```
+http://127.0.0.1:[port]/cars
+```
+Get the access to the Ingress gataway:
+```
 ./ingress-forward.sh
-
-
+```
+Ask carservice the list of cars:
+```
+http://localhost:31380/carservice/cars
+```
+The carservice has been configured in the carservice Virtual Service.
+## Display the Kiali dashboard
+Kiali is a console for Istio service mesh.
+```
 kubectl -n istio-system port-forward deployment/kiali 20001:20001
-
-http://localhost:20001/
-
+```
+Launch the console: http://localhost:20001/
+```
+Active again carservice, then inspect the cluster in Kiali.
 http://localhost:ingressport/carservice/cars
 
 <img src="images/kiali1.png">
