@@ -1,0 +1,22 @@
+apiVersion: "networking.istio.io/v1alpha3"
+kind: "DestinationRule"
+metadata:
+  name: "carservice"
+spec:
+  host: "carservice.default.svc.cluster.local"
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+
+---
+
+apiVersion: authentication.istio.io/v1alpha1
+kind: Policy
+metadata:
+    name: carservice-policy
+spec:
+    targets:
+    - name: carservice
+    peers:
+    - mtls:
+        mode: STRICT
