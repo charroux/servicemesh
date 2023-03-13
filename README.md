@@ -84,16 +84,15 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/c
 
 
 # How to Run
-
-This is a step-by-step guide how to run the example:
+## Install Docker and Minikube
+https://www.docker.com/get-started/
+https://minikube.sigs.k8s.io/docs/start/
+Then start the Kubernetes cluster:
 ```
 minikube start --cpus=2 --memory=5000 --driver=docker
 ```
 ## Install Istio
-
 https://istio.io/latest/docs/setup/getting-started/
-
-
 ```
 cd Documents/istio-1.17.0    
 export PATH=$PWD/bin:$PATH    
