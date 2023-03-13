@@ -34,17 +34,17 @@ https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/char
 ## Circuit breaker
 
 Adding a circuit breaker to carservice:
-'''
+```
 kubectl apply -f circuit-breaker.yaml
-'''
+```
 For testting purpose, the circuit breaker opens when a single connection occurs !
 
 So http://localhost:31380/carservice/cars must return an error.
 
 Disable the circuit breaker using:
-'''
+```
 kubectl delete -f circuit-breaker.yaml
-'''
+```
 
 Inspect the circuit break configuration: 
 
