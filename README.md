@@ -86,7 +86,9 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/c
 # How to Run
 ## Install Docker and Minikube
 https://www.docker.com/get-started/
+
 https://minikube.sigs.k8s.io/docs/start/
+
 Then start the Kubernetes cluster:
 ```
 minikube start --cpus=2 --memory=5000 --driver=docker
@@ -94,9 +96,10 @@ minikube start --cpus=2 --memory=5000 --driver=docker
 ## Install Istio
 https://istio.io/latest/docs/setup/getting-started/
 ```
-cd Documents/istio-1.17.0    
+cd istio-1.17.0    
 export PATH=$PWD/bin:$PATH    
-istioctl install --set profile=demo -y   
+istioctl install --set profile=demo -y
+cd ..   
 ```
 Enable auto-injection of the Istio side-cars when the pods are started:
 ```
@@ -142,7 +145,7 @@ See the configuration: https://github.com/charroux/servicemesh/blob/main/infrast
 
 Launch:
 - Kubernetes deployment and service for carcervice
-- Istio Virtual Service for carservice (A VirtualService defines a set of traffic routing rules to apply when a host is addressed)
+- Istio Virtual Service for carservice (a VirtualService defines a set of traffic routing rules to apply when a host is addressed)
 - Kubernetes deployment and service for the customer app
 - Istio Virtual Service for the customer app
 ```
@@ -164,7 +167,7 @@ kubectl exec -it [pod name] -- /bin/sh
 ```
 ls
 ```
-You should view thec java jar file.
+You should view the java jar file.
 ```
 exit
 ```
@@ -175,7 +178,7 @@ minikube service carservice --url
 ```
 http://127.0.0.1:[port]/cars
 ```
-Get the access to the Ingress gataway:
+Get the access to the Ingress gateway:
 ```
 ./ingress-forward.sh
 ```
@@ -183,14 +186,14 @@ Ask carservice the list of cars:
 ```
 http://localhost:31380/carservice/cars
 ```
-The carservice has been configured in the carservice Virtual Service.
+The carservice has been configured in the carservice Virtual Service (see https://github.com/charroux/servicemesh/blob/main/microservices.yaml).
 ## Display the Kiali dashboard
 Kiali is a console for Istio service mesh.
 ```
 kubectl -n istio-system port-forward deployment/kiali 20001:20001
 ```
 Launch the console: http://localhost:20001/
-```
+
 Active again carservice, then inspect the cluster in Kiali.
 http://localhost:ingressport/carservice/cars
 
