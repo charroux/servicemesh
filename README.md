@@ -1,6 +1,6 @@
 # Cloud native app
-
-Start Docker
+## Docker and Kubernetes
+Start Docker.
 
 Start the Kubernetes cluster:
 ```
