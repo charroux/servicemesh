@@ -133,6 +133,7 @@ Ask carservice the list of cars:
 ```
 http://localhost:31380/carservice/cars
 ```
+# Service mesh
 ## Fault tolerance
 ### Circuit breaker
 <img src="images/circuit_breaker.png">
@@ -149,6 +150,21 @@ https://github.com/charroux/servicemesh/blob/main/circuit-breaker.yaml
 Disable the circuit breaker using:
 ```
 kubectl delete -f circuit-breaker.yaml
+```
+
+## Scaling and Load balancing without coding
+<img src="images/scaling.png">
+
+How many instance are actually running:
+```
+kubectl get pods
+```
+```
+kubectl get deployments
+```
+Start a second instance:
+```
+kubectl scale --replicas=2 deployment/[deployment name]
 ```
 
 ## Database and microservices gateway
