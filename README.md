@@ -13,13 +13,13 @@ Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gat
 ```
 kubectl apply -f infrastructure.yaml
 ```
-## Microseervices and proxies
+## Microservices and service mesh proxies
 <img src="images/carservicearchi.png">
 
 ```
 kubectl apply -f microservices.yaml
 ```
-Get the access to the Ingress gateway:
+## Get the access to the Ingress gateway
 ```
 ./ingress-forward.sh
 ```
@@ -27,7 +27,7 @@ Ask carservice the list of cars:
 ```
 http://localhost:31380/carservice/cars
 ```
-The carservice has been configured in the carservice Virtual Service (see https://github.com/charroux/servicemesh/blob/main/microservices.yaml).
+
 ## Display the Kiali dashboard
 Kiali is a console for Istio service mesh.
 ```
