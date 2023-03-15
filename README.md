@@ -30,6 +30,8 @@ http://localhost:31380/carservice/cars
 ## Fault tolerance without coding
 
 ### Circuit breaker
+<img src="images/circuit_breaker.png">
+
 Adding a circuit breaker to carservice:
 ```
 kubectl apply -f circuit-breaker.yaml
