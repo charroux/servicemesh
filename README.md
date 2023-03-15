@@ -95,6 +95,13 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/c
 ## Server side
 https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/charroux/carstat/CarRentalServiceImpl.java
 
+# Distributed transactions
+## The saga pattern
+<img src="images/sagapattern.png">
+
+<img src="images/saga.png">
+
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
 
 Active again carservice: http://localhost:ingressport/carservice/cars, hen inspect the cluster in Kiali.
 http://localhost:ingressport/carservice/cars
