@@ -116,7 +116,23 @@ kubectl apply -f infrastructure.yaml
 ```
 minikube dashboard
 ```
+## Ingress gateway
+<img src="images/servicemesh.png">
 
+https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
+### Microservices, service mesh proxies and routing via the gateway
+```
+kubectl apply -f microservices.yaml
+```
+https://github.com/charroux/servicemesh/blob/main/microservices.yaml
+### Get the access to the Ingress gateway
+```
+./ingress-forward.sh
+```
+Ask carservice the list of cars:
+```
+http://localhost:31380/carservice/cars
+```
 
 ## Database and microservices gateway
 <img src="images/servicemesh.png">
