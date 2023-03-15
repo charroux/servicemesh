@@ -14,7 +14,6 @@ Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gat
 kubectl apply -f infrastructure.yaml
 ```
 ## Microservices and service mesh proxies
-<img src="images/carservicearchi.png">
 
 ```
 kubectl apply -f microservices.yaml
@@ -82,6 +81,7 @@ curl --header "Content-Type: application/json" --request POST --data '{"customer
 
 # Car Rental Service
 
+<img src="images/carservicearchi.png">
 
 
 ## The car service Rest web service
