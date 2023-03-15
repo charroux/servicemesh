@@ -9,9 +9,7 @@ minikube start --cpus=2 --memory=5000 --driver=docker
 ## Database and microservices gateway
 <img src="images/servicemesh.png">
 Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gataway:
-```
-kubectl apply -f infrastructure.yaml
-```
+
 ## Microseervices and proxies
 <img src="images/carservicearchi.png">
 ```
