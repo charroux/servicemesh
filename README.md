@@ -103,6 +103,34 @@ https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/char
 
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
 
+# Kubernetes
+## Pod and Service
+<img src="images/pod_service.png">
+
+https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
+
+## Database and microservices gateway
+<img src="images/servicemesh.png">
+
+Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gataway:
+```
+kubectl apply -f infrastructure.yaml
+```
+## Microservices and service mesh proxies
+
+```
+kubectl apply -f microservices.yaml
+```
+## Get the access to the Ingress gateway
+```
+./ingress-forward.sh
+```
+Ask carservice the list of cars:
+```
+http://localhost:31380/carservice/cars
+```
+
+
 Active again carservice: http://localhost:ingressport/carservice/cars, hen inspect the cluster in Kiali.
 http://localhost:ingressport/carservice/cars
 
