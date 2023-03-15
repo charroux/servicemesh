@@ -52,6 +52,8 @@ kubectl delete pods [pod name]
 ```
 
 ## Scaling and Load balancing without coding
+<img src="images/scaling.png">
+
 How many instance are actually running:
 ```
 kubectl get pods
@@ -61,7 +63,7 @@ kubectl get deployments
 ```
 Start a second instance:
 ```
-kubectl scale --replicas=2 [deployment name]
+kubectl scale --replicas=2 deployment/[deployment name]
 ```
 ## Monotoring
 ### Display the Kiali dashboard
