@@ -72,6 +72,18 @@ Kiali is a console for Istio service mesh.
 kubectl -n istio-system port-forward deployment/kiali 20001:20001
 ```
 Launch the console: http://localhost:20001/
+## Stop the app
+```
+kubectl delete -f microservices.yaml
+```
+```
+kubectl delete -f infrastructure.yaml
+```
+# Rest Web service implementation
+## Car Rental Service
+<img src="images/carservicearchi.png">
+
+
 
 Active again carservice: http://localhost:ingressport/carservice/cars, hen inspect the cluster in Kiali.
 http://localhost:ingressport/carservice/cars
