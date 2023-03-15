@@ -109,6 +109,15 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/c
 
 https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
 
+Launch the Kubernetes deployment and service for PostgreSQL:
+```
+kubectl apply -f infrastructure.yaml
+```
+```
+minikube dashboard
+```
+
+
 ## Database and microservices gateway
 <img src="images/servicemesh.png">
 
