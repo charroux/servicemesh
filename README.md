@@ -80,9 +80,20 @@ kubectl delete -f microservices.yaml
 kubectl delete -f infrastructure.yaml
 ```
 # Rest Web service implementation
-## Car Rental Service
 <img src="images/carservicearchi.png">
 
+## Rest web service
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
+
+# gRPC
+## Service contract
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/proto/carservice.proto
+<img src="images/full_duplex.png">
+
+## Client side
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
+## Server side
+https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/charroux/carstat/CarRentalServiceImpl.java
 
 
 Active again carservice: http://localhost:ingressport/carservice/cars, hen inspect the cluster in Kiali.
