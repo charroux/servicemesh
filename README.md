@@ -133,6 +133,23 @@ Ask carservice the list of cars:
 ```
 http://localhost:31380/carservice/cars
 ```
+## Fault tolerance
+### Circuit breaker
+<img src="images/circuit_breaker.png">
+
+Adding a circuit breaker to carservice:
+```
+kubectl apply -f circuit-breaker.yaml
+```
+Test the circuit breaker:
+http://localhost:31380/carservice/cars
+
+https://github.com/charroux/servicemesh/blob/main/circuit-breaker.yaml
+
+Disable the circuit breaker using:
+```
+kubectl delete -f circuit-breaker.yaml
+```
 
 ## Database and microservices gateway
 <img src="images/servicemesh.png">
