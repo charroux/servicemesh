@@ -22,6 +22,9 @@ kubectl apply -f microservices.yaml
 ```
 ./ingress-forward.sh
 ```
+```
+kubectl -n istio-system port-forward deployment/istio-ingressgateway 31380:8080
+```
 Ask carservice the list of cars:
 ```
 http://localhost:31380/carservice/cars
