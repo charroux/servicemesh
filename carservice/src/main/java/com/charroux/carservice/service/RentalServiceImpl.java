@@ -12,15 +12,20 @@ import io.grpc.carservice.CarRentalServiceGrpc;
 import io.grpc.carservice.CreditApplication;
 import io.grpc.carservice.Agreement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 @Service
 public class RentalServiceImpl implements RentalService {
+
+    @Value("${CUSTOMER.SERVICE.HOST}")
+    String customerHost;
+
+    @Value("${CUSTOMER.SERVICE.PORT}")
+    String customerPost;
 
     CarRepository carRepository;
     RentalAgreementRepository rentalAgreementRepository;
@@ -32,13 +37,17 @@ public class RentalServiceImpl implements RentalService {
         this.rentalAgreementRepository = rentalAgreementRepository;
     }
 
+    @Override
+    public void addCar(Car car) {
+        carRepository.save(car);
+    }
+
     class AgreementObserver extends Thread implements StreamObserver<Agreement> {
 
         CountDownLatch countDownLatch;
         RentalAgreement rentalAgreement;
 
         public AgreementObserver(CountDownLatch countDownLatch, RentalAgreement rentalAgreement){
-            System.out.println("construc");
             this.countDownLatch = countDownLatch;
             this.rentalAgreement = rentalAgreement;
         }
@@ -78,7 +87,6 @@ public class RentalServiceImpl implements RentalService {
         }
     }
 
-
     @Override
     public RentalAgreement rent(long customerId, int numberOfCars) throws CarNotFoundException {
 
@@ -88,9 +96,16 @@ public class RentalServiceImpl implements RentalService {
             throw new CarNotFoundException();
         }
 
-        String host = System.getenv("ECHO_SERVICE_HOST");
+        /*String host = System.getenv("ECHO_SERVICE_HOST");
         String port = System.getenv("ECHO_SERVICE_PORT");
+
+        System.out.println("host1: " + host);
+        System.out.println("port:" + port);
         final ManagedChannel channel = ManagedChannelBuilder.forTarget(host + ":" + port)
+                .usePlaintext()
+                .build();*/
+
+        final ManagedChannel channel = ManagedChannelBuilder.forTarget(customerHost + ":" + customerPost)
                 .usePlaintext()
                 .build();
 
@@ -101,6 +116,7 @@ public class RentalServiceImpl implements RentalService {
         RentalAgreement rentalAgreement = new RentalAgreement(customerId, RentalAgreement.State.PENDING);
         rentalAgreement.setState(RentalAgreement.State.PENDING);
         rentalAgreementRepository.save(rentalAgreement);
+
         System.out.println("debut=" + rentalAgreement.hashCode() + " " + rentalAgreement);
 
         AgreementObserver agreementObserver = new AgreementObserver(countDownLatch, rentalAgreement);
@@ -176,6 +192,22 @@ public class RentalServiceImpl implements RentalService {
             result.add(it.next());
         }
         return result;
+    }
+
+    @Override
+    public RentalAgreement getAgreement(long customerId) {
+        System.out.println(customerId);
+        List<RentalAgreement> agreements = rentalAgreementRepository.findByCustomerId(customerId);
+        System.out.println("size=" + agreements.size());
+        RentalAgreement rentalAgreement = agreements.get(0);
+        return rentalAgreement;
+    }
+
+    @Override
+    public Collection<Car> getCars(RentalAgreement agreement) {
+        Optional<RentalAgreement> optional = rentalAgreementRepository.findById(agreement.getId());
+        if(optional.isEmpty()) return new ArrayList<Car>();
+        return optional.get().getCars();
     }
 
 }

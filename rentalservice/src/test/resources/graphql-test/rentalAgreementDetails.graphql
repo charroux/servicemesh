@@ -1,0 +1,13 @@
+query rentalAgreementDetails {
+    rentalAgreementById(id: "rentalAgreement-1") {
+        id
+        customer {
+            id
+            name
+        }
+        car {
+            plateNumber
+            brand
+        }
+    }
+}

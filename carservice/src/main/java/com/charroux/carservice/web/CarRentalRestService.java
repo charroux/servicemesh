@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.*;
 //import io.grpc.carservice.Invoice;
 //import io.grpc.carservice.Car;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @RestController
 public class CarRentalRestService {
@@ -29,6 +33,21 @@ public class CarRentalRestService {
         return rentalService.carsToBeRented();
     }
 
+    @PostMapping("/carsForAgreement")
+    public Collection<Car> carsForAgreement(@RequestBody RentalAgreement rentalAgreement) {
+        return rentalService.getCars(rentalAgreement);
+    }
+
+   /* @PostMapping("/carsForAgreements")
+    public Map<RentalAgreement, Collection<Car>> carsForAgreements(@RequestBody List<RentalAgreement> agreements) {
+        return agreements.stream()
+                .collect(
+                        Collectors.toMap(
+                                Function.identity(),
+                                rentalAgreement ->
+                                        rentalService.getCars(rentalAgreement)));
+    }*/
+
     @PostMapping("/cars")
     public ResponseEntity<RentCarsResponse>  rentCars(@RequestBody RentCarsRequest rentCarsRequest) throws Exception{
         RentalAgreement rentalAgreement = rentalService.rent(
@@ -44,5 +63,11 @@ public class CarRentalRestService {
     public List<RentalAgreement> getAgreements(){
         return rentalService.getAgreements();
     }
+
+    @GetMapping("/agreement")
+    public RentalAgreement getAgreement(@RequestParam(value = "customerId", required = true) int customerId) throws CustomerNotFoundException {
+        return rentalService.getAgreement(customerId);
+    }
+
 
 }

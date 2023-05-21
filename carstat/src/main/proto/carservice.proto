@@ -11,6 +11,7 @@ package carservice;
 
 service CarRentalService {
   rpc RentCars(stream CreditApplication) returns (stream Agreement) {}
+  rpc GetCustomer(CustomerID) returns (Customer) {}
 }
 
 message CreditApplication {
@@ -20,4 +21,13 @@ message CreditApplication {
 
 message Agreement {
   string creditReservedEvent = 1;
+}
+
+message CustomerID {
+  uint64 customerId = 1;
+}
+
+message Customer {
+  string name = 1;
+  uint32 credit = 2;
 }

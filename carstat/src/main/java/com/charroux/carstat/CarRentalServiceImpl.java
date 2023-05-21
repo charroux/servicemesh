@@ -45,6 +45,17 @@ public class CarRentalServiceImpl extends CarRentalServiceGrpc.CarRentalServiceI
         };
     }
 
+    @Override
+    public void getCustomer(CustomerID request, StreamObserver<Customer> responseObserver) {
+        com.charroux.carstat.entity.Customer customer = null;
+        try {
+            customer = customerService.findById(request.getCustomerId());
+        } catch (CustomerNotFoundException e) {
+            responseObserver.onError(e);
+        }
+        responseObserver.onNext(Customer.newBuilder().setCredit(customer.getCredit()).setName(customer.getName()).build());
+    }
+
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
     }

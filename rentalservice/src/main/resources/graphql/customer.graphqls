@@ -1,0 +1,28 @@
+#extend type Query {
+#    customerById(id: ID!): Customer
+#}
+
+extend type Mutation {
+    rentCars(rentCarsRequest: RentCarsRequest!): RentCarsResponse
+}
+
+input RentCarsRequest {
+    customerId: ID!
+    numberOfCars: Int
+}
+
+type RentCarsResponse {
+    customerID: ID!
+    rentalAgreementId: Int
+    state: String
+}
+
+type Customer {
+    id: ID
+    name: String
+}
+
+#schema {
+#  query: QueryResolver
+#  mutation: MutationResolver
+#}

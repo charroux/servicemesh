@@ -1,0 +1,21 @@
+type Query {
+    rentalAgreements: [RentalAgreement]
+    rentalAgreementByCustomerId(id: ID): RentalAgreement
+}
+
+type Mutation {
+    newRentalAgreement(rentalAgreement: RentalAgreementInput!): RentalAgreement
+}
+
+input RentalAgreementInput {
+    custumerId: Int
+    plateNumber: String
+}
+
+type RentalAgreement {
+    id: ID
+    customer: Customer
+    cars: [Car]
+}
+
+

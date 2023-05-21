@@ -20,12 +20,12 @@ spec:
     spec:
       containers:
       - name: carservice
-        image: efrei/carservice
+        image: charroux/carservice:1
         imagePullPolicy: Always
         env:
-          - name: ECHO_SERVICE_HOST
+          - name: CUSTOMER_SERVICE_HOST
             value: carstat
-          - name: ECHO_SERVICE_PORT
+          - name: CUSTOMER_SERVICE_PORT
             value: "8080"
 #        livenessProbe:
 #          initialDelaySeconds: 180
@@ -106,7 +106,7 @@ spec:
     spec:
       containers:
         - name: carstat
-          image: efrei/carstat
+          image: charroux/carstat:1
           imagePullPolicy: Always
 ---
 apiVersion: v1
@@ -147,3 +147,79 @@ spec:
               number: 80
             host: carstat.default.svc.cluster.local
 
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cust
+    version: "1.0"
+  name: cust
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cust
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cust
+    spec:
+      containers:
+        - name: cust
+          image: charroux/customer:1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources: {}
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cust
+  name: cust
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+      name: http
+  selector:
+    app: cust
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: cust
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - microservice-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /customer/
+      #        regex: '\/carservice\/*'
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            port:
+              number: 80
+            host: cust.default.svc.cluster.local

@@ -24,8 +24,8 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: carservice-postgres:1
-          imagePullPolicy: Never
+          image: charroux/postgres:1
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
           env:

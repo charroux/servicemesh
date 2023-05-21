@@ -1,0 +1,20 @@
+extend type Query {
+    cars: [Car]
+    carsWithFilter(filter: CarFilter): [Car]
+    carById(plateNumber: ID!): Car!
+}
+
+type Car {
+    plateNumber: ID!
+    brand: String!
+    price: Int!
+}
+
+input CarFilter {
+    price: FilterField
+}
+
+input FilterField {
+    operator: String!
+    value: String!
+}

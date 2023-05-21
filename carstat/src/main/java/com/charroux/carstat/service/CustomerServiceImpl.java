@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
@@ -27,5 +29,14 @@ public class CustomerServiceImpl implements CustomerService{
         customer.reserveCredit(amount);
         System.out.println("Save=" + customer.getCredit());
         customerRepository.save(customer);
+    }
+
+    @Override
+    public Customer findById(long customerId) throws CustomerNotFoundException {
+        Optional<Customer> customer = customerRepository.findById(customerId);
+        if(customer.isEmpty()) {
+            throw new CustomerNotFoundException();
+        }
+        return customer.get();
     }
 }

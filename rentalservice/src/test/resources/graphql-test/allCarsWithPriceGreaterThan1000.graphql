@@ -1,0 +1,5 @@
+query allCarsWithPriceGreaterThan1000 {
+    carsWithFilter(filter: { price: { operator: "gt" value: "1000" } }) {
+        plateNumber
+    }
+}

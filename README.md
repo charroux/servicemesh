@@ -211,21 +211,34 @@ minikube docker-env
 eval $(minikube -p minikube docker-env)
 eval $(minikube docker-env)  
 ```
+Build the postgres image:
+```
+docker build --tag=charroux/postgres:1 postgres
+docker push charroux/postgres:1
+```
 Build the carservice app:
 ```
 cd carservice
 ./gradlew build
 cd ..
+docker build --tag=charroux/carservice:1 carservice
+docker push charroux/carservice:1  
 ```
-Build the customer app:
+Build the carstat app:
 ```
 cd carstat
 ./gradlew build
 cd ..
+docker build --tag=charroux/carstat:1 carstat  
+docker push charroux/carstat:1  
 ```
-Build the 3 Docker images (carservice, customer and Postgresql):
+Build the customer app:
 ```
-./docker-build.sh  
+cd customer
+./gradlew build
+cd ..
+docker build --tag=charroux/customer:1 customer  
+docker push charroux/customer:1  
 ```
 Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gataway:
 ```
