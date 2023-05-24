@@ -1,6 +1,31 @@
 # Cloud native app
 
-### Microservices
+<div id="user-content-toc">
+  <ul>
+    <li><a href="#1-Microservices">1. Microservices</a>
+      <ul>
+        <li><a href="#11-the-full-development-workflow">1.1. The Full Development Workflow</a>
+          <ul>
+            <li><a href="#111-compiling-with-typescript">1.1.1. Compiling with TypeScript</a></li>
+            <li><a href="#112-testing-with-npm">1.1.2. Testing with NPM</a></li>
+            <li><a href="#113-bundling-everything-together-with-webpack">1.1.3. Bundling everything together with Webpack</a></li>
+            <li><a href="#114-running-a-live-server">1.1.4. Running a Live Server</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-formatting">1.2. Formatting</a></li>
+        <li><a href="#13-snippets">1.3. Snippets</a></li>
+        <li><a href="#14-go-sgf-viewers">1.4. Go SGF Viewers</a>
+          <ul>
+            <li><a href="#141-glift">1.4.1. Glift</a></li>
+            <li><a href="#141-wgojs">1.4.2. WGo.js</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+## 1. Microservices
 ### Cloud native / DevOps
 ### Scalability and load balancing
 ### Full duplex asynchronous exchange
