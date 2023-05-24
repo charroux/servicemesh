@@ -3,6 +3,7 @@
 <div id="user-content-toc">
   <ul>
     <li><a href="#1-Microservices">1. Microservices</a>
+    <li><a href="#2-Full-duplex-asynchronous-exchange-via-gRPC ">2. Full duplex asynchronous exchange via gRPC </a>
       <ul>
         <li><a href="#11-the-full-development-workflow">1.1. The Full Development Workflow</a>
           <ul>
@@ -25,7 +26,6 @@
   </ul>
 </div>
 
-## 1. Microservices
 ### Cloud native / DevOps
 ### Scalability and load balancing
 ### Full duplex asynchronous exchange
