@@ -12,6 +12,7 @@ public interface RentalService {
     public void addCar(Car car);
     public RentalAgreement rent(long customerId, int numberOfCars) throws CarNotFoundException;
     public List<Car> carsToBeRented();
+    public Car getCar(String plateNumber) throws CarNotFoundException;
     public List<RentalAgreement> getAgreements();
     public RentalAgreement getAgreement(long customerId) throws CustomerNotFoundException;
     public Collection<Car> getCars(RentalAgreement rentalAgreement);

@@ -1,4 +1,107 @@
 # Cloud native app
+
+### Microservices
+### Cloud native / DevOps
+### Scalability and load balancing
+### Full duplex asynchronous exchange
+### Data consistency / distributed transaction
+### Fault tolerance
+### Monitoring
+### API gateway
+### omposition of services
+
+
+## Microservices
+
+<img src="images/carservicearchi.png">
+
+## Full duplex asynchronous exchange via gRPC   
+
+<img src="images/full_duplex.png">
+
+### Service contract
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/proto/carservice.proto
+
+## Data consistency / distributed transaction
+### The saga pattern
+<img src="images/sagapattern.png">
+
+<img src="images/saga.png">
+
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
+
+
+## Service mesh
+### Scalability and load balancing
+
+<img src="images/scaling.png">
+
+How many instance are actually running:
+```
+kubectl get pods
+```
+```
+kubectl get deployments
+```
+Start a second instance:
+```
+kubectl scale --replicas=2 deployment/[deployment name]
+```
+
+### Fault tolerance without coding
+
+#### Circuit breaker
+<img src="images/circuit_breaker.png">
+
+Adding a circuit breaker to carservice:
+```
+kubectl apply -f circuit-breaker.yaml
+```
+Test the circuit breaker:
+http://localhost:31380/carservice/cars
+
+Disable the circuit breaker using:
+```
+kubectl delete -f circuit-breaker.yaml
+```
+#### Auto restart in case of failure
+```
+kubectl get pods
+```
+```
+kubectl delete pods [pod name]
+```
+
+### API gateway / composition of services
+<img src="images/servicemesh.png">
+
+https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
+#### Microservices, service mesh proxies and routing via the gateway
+```
+kubectl apply -f microservices.yaml
+```
+https://github.com/charroux/servicemesh/blob/main/microservices.yaml
+#### Get the access to the Ingress gateway
+```
+./ingress-forward.sh
+```
+Ask carservice the list of cars:
+```
+http://localhost:31380/carservice/cars
+```
+
+### Monotoring
+#### Display the Kiali dashboard
+Kiali is a console for Istio service mesh.
+```
+kubectl -n istio-system port-forward deployment/kiali 20001:20001
+```
+Launch the console: http://localhost:20001/
+
+## Composition of services
+
+<img src="images/composition.png">
+
 ## Docker and Kubernetes
 Start Docker.
 

@@ -56,17 +56,6 @@ public class RentalController {
         return this.getAllRentals();
     }
 
-    /*@BatchMapping
-    public Map<RentalAgreement, Collection<Car>> cars(List<RentalAgreement> agreements) {
-        log.info("Fetching cars for agreemments {} ", agreements);
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Object> requestEntity = new HttpEntity<Object>(agreements,headers);
-        ResponseEntity<Map<RentalAgreement, Collection<Car>>> response = restTemplate.exchange(carServiceURL + "/carsForAgreements", HttpMethod.POST, requestEntity,new ParameterizedTypeReference<Map<RentalAgreement, Collection<Car>>>() {});
-        return response.getBody();
-    }*/
-
     @SchemaMapping
     public Collection<Car> cars(RentalAgreement rentalAgreement) {
         log.info("Fetching cars for agreemment {} ", rentalAgreement);
@@ -93,38 +82,5 @@ public class RentalController {
         log.info("Fetching retal agreement for customer id: " + customerId);
         return this.getRentalByCustomerId(customerId);
     }
-
- /*   @QueryMapping
-    public Iterable<Rental> rentalAgreements(DataFetchingEnvironment environment) {
-        DataFetchingFieldSelectionSet s = environment.getSelectionSet();
-        List<Specification<Rental>> specifications = new ArrayList<>();
-        if (s.contains("cars") && !s.contains("customer")) {
-            return this.getAllRentals();
-        } else if (s.contains("cars") && s.contains("customer")) {
-            Iterable<Rental> rentals = this.getAllRentals();
-            Iterator<Rental> iterator = rentals.iterator();
-            while (iterator.hasNext()) {
-                iterator.next();
-                customerController.customerByID()
-            }
-            return this.getAllRentals();
-        }
-        return null;
-    }*/
-
-    /*@QueryMapping
-    public RentalAgreement rentalAgreementByCustomerId(@Argument int customerId, DataFetchingEnvironment environment) {
-        DataFetchingFieldSelectionSet s = environment.getSelectionSet();
-        RentalAgreement rentalAgreement = this.getRentalByCustomerId(customerId);
-        if (s.contains("cars") && !s.contains("customer")) {
-            return rentalAgreement;
-        } else if (s.contains("cars") && s.contains("customer")) {
-            Customer customer = customerController.customerById(customerId);
-            rentalAgreement.setCustomer(customer);
-            return rentalAgreement;
-        }
-        return null;
-    }*/
-
 
 }

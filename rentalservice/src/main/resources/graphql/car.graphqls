@@ -18,3 +18,7 @@ input FilterField {
     operator: String!
     value: String!
 }
+
+type Subscription {
+    notifyNewCarPrice (plateNumber: ID): Car
+}

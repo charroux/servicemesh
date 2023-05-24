@@ -7,10 +7,14 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SubscriptionMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import reactor.core.publisher.Flux;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -35,8 +39,11 @@ public class CarsController {
 
     @QueryMapping
     public Car carById(@Argument String plateNumber) {
-        Stream<Car> cars = StreamSupport.stream(cars().spliterator(), false);
-        return cars.filter(car -> car.plateNumber().equals(plateNumber)).findFirst().get();
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Car> response = restTemplate.getForEntity(
+                carServiceURL + "/cars/" + plateNumber,
+                Car.class);
+        return response.getBody();
     }
 
     @QueryMapping
@@ -54,6 +61,26 @@ public class CarsController {
     private Specification<Car> byPrice(FilterField filterField) {
         return (root, query, builder) -> filterField
                 .generateCriteria(builder, root.get("price"));
+    }
+
+    @SubscriptionMapping
+    public Flux<Car> notifyNewCarPrice(@Argument String plateNumber) {
+        log.info("Subscription");
+
+        //return Flux.interval(Duration.ofSeconds(1)).map(num -> new Car());
+        return Flux.fromStream(
+            Stream.generate(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                Car car = this.carById(plateNumber);
+                int price = (int)Math.random();
+                log.info("price = " + price);
+                car.setPrice(price);
+                return car;
+            }));
     }
 
 }

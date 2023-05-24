@@ -185,6 +185,13 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
+    public Car getCar(String plateNumber) throws CarNotFoundException {
+        List<Car> cars = carRepository.findByPlateNumber(plateNumber);
+        if(cars.size() == 0) throw  new CarNotFoundException();
+        return cars.get(0);
+    }
+
+    @Override
     public List<RentalAgreement> getAgreements(){
         List<RentalAgreement> result = new ArrayList<RentalAgreement>();
         Iterator<RentalAgreement> it = rentalAgreementRepository.findAll().iterator();

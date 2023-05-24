@@ -33,6 +33,11 @@ public class CarRentalRestService {
         return rentalService.carsToBeRented();
     }
 
+    @GetMapping("/cars/{plateNumber}")
+    public Car getCarByPlateNumber(@PathVariable("plateNumber") String plateNumber) throws CarNotFoundException {
+        return rentalService.getCar(plateNumber);
+    }
+
     @PostMapping("/carsForAgreement")
     public Collection<Car> carsForAgreement(@RequestBody RentalAgreement rentalAgreement) {
         return rentalService.getCars(rentalAgreement);
