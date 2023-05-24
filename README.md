@@ -2,8 +2,9 @@
 
 <div id="user-content-toc">
   <ul>
-    <li><a href="#1-Microservices">1. Microservices</a>
-    <li><a href="#2-Full-duplex-asynchronous-exchange-via-gRPC ">2. Full duplex asynchronous exchange via gRPC </a>
+    <li><a href="#1-Microservices">1. Microservices</a></li>
+    <li><a href="#2-Full-duplex-asynchronous-exchange-via-gRPC ">2. Full duplex asynchronous exchange via gRPC </a></li>
+    <li><a href="#1-Microservices1">1. Microservices1</a></li>
       <ul>
         <li><a href="#11-the-full-development-workflow">1.1. The Full Development Workflow</a>
           <ul>
