@@ -2,30 +2,37 @@
 
 <div id="user-content-toc">
   <ul>
-    <li><a href="#microservices">1. Microservices</a></li>
-    <li><a href="#full-duplex-asynchronous-exchange-via-grpc">2. Full duplex asynchronous exchange via gRPC</a>
+    <li><a href="#start-the-app">1. Start the app</a>
         <ul>
-            <li><a href="#service-contract">2.1. Service contract</a></li>
+            <li><a href="#Requirements">1.1. Requirements</a></li>
+            <li><a href="#Docker">1.2. Docker</a></li>
+            <li><a href="#Minikube-cluster">1.3. Minikube cluster</a></li>
         </ul>
     </li>
-    <li><a href="#data-consistency--distributed-transaction-1">3. Data consistency / distributed transaction</a>
+    <li><a href="#microservices">2. Microservices</a></li>
+    <li><a href="#full-duplex-asynchronous-exchange-via-grpc">3. Full duplex asynchronous exchange via gRPC</a>
         <ul>
-            <li><a href="#the-saga-pattern">3.1. The saga patternt</a></li>
+            <li><a href="#service-contract">3.1. Service contract</a></li>
         </ul>
     </li>
-    <li><a href="#kubernetes">4. Kubernetes</a>
+    <li><a href="#data-consistency--distributed-transaction-1">4. Data consistency / distributed transaction</a>
         <ul>
-            <li><a href="#scalability-and-load-balancing-1">4.1. Scalability and load balancing</a></li>
-            <li><a href="#auto-restart-in-case-of-failure">4.2. Auto restart in case of failure</a></li>
+            <li><a href="#the-saga-pattern">4.1. The saga pattern</a></li>
         </ul>
     </li>
-    <li><a href="#service-mesh">5. Service mesh</a>
+    <li><a href="#kubernetes">5. Kubernetes</a>
         <ul>
-            <li><a href="#microservices-service-mesh-proxies-and-routing-via-the-gateway">5.1. Microservices, service mesh proxies and routing via the gateway</a></li>
-            <li><a href="#circuit-breaker">5.2. Circuit breaker</a></li>
-            <li><a href="#monotoring">5.3. Monotoring</a>
+            <li><a href="#scalability-and-load-balancing-1">5.1. Scalability and load balancing</a></li>
+            <li><a href="#auto-restart-in-case-of-failure">5.2. Auto restart in case of failure</a></li>
+        </ul>
+    </li>
+    <li><a href="#service-mesh">6. Service mesh</a>
+        <ul>
+            <li><a href="#microservices-service-mesh-proxies-and-routing-via-the-gateway">6.1. Microservices, service mesh proxies and routing via the gateway</a></li>
+            <li><a href="#circuit-breaker">6.2. Circuit breaker</a></li>
+            <li><a href="#monotoring">6.3. Monotoring</a>
                 <ul>
-                    <li><a href="#display-the-kiali-dashboard">5.3.1. Display the Kiali dashboard</a></li>
+                    <li><a href="#display-the-kiali-dashboard">6.3.1. Display the Kiali dashboard</a></li>
                 </ul>
             </li>
         </ul>
@@ -36,15 +43,14 @@
 </div>
 
 
-### Cloud native / DevOps
-### Scalability and load balancing
-### Full duplex asynchronous exchange
-### Data consistency / distributed transaction
-### Fault tolerance
-### Monitoring
-### API gateway
-### omposition of services
+## Docker
 
+Sart Docker
+
+## Minikube cluster
+```
+minikube start --cpus=2 --memory=5000 --driver=docker
+```
 
 ## Microservices
 
