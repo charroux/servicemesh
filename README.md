@@ -35,6 +35,7 @@
     </li>
     <li><a href="#kubernetes">5. Kubernetes</a>
         <ul>
+            <li><a href="#Pod-and-service">5.1. Pod and Service</a></li>
             <li><a href="#scalability-and-load-balancing-1">5.1. Scalability and load balancing</a></li>
             <li><a href="#auto-restart-in-case-of-failure">5.2. Auto restart in case of failure</a></li>
         </ul>
@@ -87,12 +88,20 @@ kubectl apply -f microservices.yaml
 
 <img src="images/carservicearchi.png">
 
+https://github.com/charroux/servicemesh/tree/main/carservice/src/main/java/com/charroux/carservice
+
 ## Full duplex asynchronous exchange via gRPC   
 
 <img src="images/full_duplex.png">
 
 ### Service contract
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/proto/carservice.proto
+
+### gRPC client
+https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
+
+### gRPC server
+https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/charroux/carstat/CarRentalServiceImpl.java
 
 ## Data consistency / distributed transaction
 ### The saga pattern
@@ -103,6 +112,13 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/proto/cars
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
 
 ## Kubernetes
+
+### Pod and Service
+
+<img src="images/pod_service.png">
+
+https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
+
 ### Scalability and load balancing
 
 <img src="images/scaling.png">
@@ -134,6 +150,9 @@ kubectl delete pods [pod name]
 
 <img src="images/servicemesh.png">
 
+```
+kubectl apply -f infrastructure.yaml
+```
 https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
 
 ```
@@ -286,10 +305,7 @@ https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/char
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
 
 # Kubernetes
-## Pod and Service
-<img src="images/pod_service.png">
 
-https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
 
 Launch the Kubernetes deployment and service for PostgreSQL:
 ```
