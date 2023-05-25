@@ -4,7 +4,13 @@
   <ul>
     <li><a href="#start-the-app">1. Start the app</a>
         <ul>
-            <li><a href="#Requirements">1.1. Requirements</a></li>
+            <li><a href="#Requirements">1.1. Requirements</a>
+                <ul>
+                    <li><a href="#install-docker-and-minikube">1.1.1. Install Docker and Minikube</a></li>
+                    <li><a href="#install-istio">1.1.2. Install Istio</a></li>
+                    <li><a href="#build-the-docker-images">1.1.3. Build the Docker images</a></li>
+                </ul>
+            </li>
             <li><a href="#Docker">1.2. Docker</a></li>
             <li><a href="#Minikube-cluster">1.3. Minikube cluster</a></li>
         </ul>
@@ -322,7 +328,7 @@ kubectl scale --replicas=2 deployment/[deployment name]
 curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":2}' http://localhost:31380/carservice/cars
 
 
-# How to Run
+# Requirements
 ## Install Docker and Minikube
 https://www.docker.com/get-started/
 
@@ -360,6 +366,9 @@ minikube docker-env
 eval $(minikube -p minikube docker-env)
 eval $(minikube docker-env)  
 ```
+
+## Build the Docker images
+
 Build the postgres image:
 ```
 docker build --tag=charroux/postgres:1 postgres
@@ -389,6 +398,8 @@ cd ..
 docker build --tag=charroux/customer:1 customer  
 docker push charroux/customer:1  
 ```
+
+
 Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gataway:
 ```
 kubectl apply -f infrastructure.yaml
