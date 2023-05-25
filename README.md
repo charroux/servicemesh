@@ -11,8 +11,8 @@
                     <li><a href="#build-the-docker-images">1.1.3. Build the Docker images</a></li>
                 </ul>
             </li>
-            <li><a href="#Docker">1.2. Docker</a></li>
-            <li><a href="#Minikube-cluster">1.3. Minikube cluster</a></li>
+            <li><a href="#Start-the-docker-daemon">1.2. Start the Docker daemon</a></li>
+            <li><a href="#Start the Minikube cluster">1.3. Start the Minikube clusterr</a></li>
         </ul>
     </li>
     <li><a href="#microservices">2. Microservices</a></li>
@@ -50,11 +50,11 @@
 
 ## Start the app
 
-### Docker
+### Start-the-docker-daemon
 
 Sart Docker
 
-### Minikube cluster
+### Start the Minikube cluster
 ```
 minikube start --cpus=2 --memory=5000 --driver=docker
 ```
