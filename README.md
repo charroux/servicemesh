@@ -47,6 +47,7 @@
             <li><a href="#monotoring">6.3. Monotoring</a>
                 <ul>
                     <li><a href="#display-the-kiali-dashboard">6.3.1. Display the Kiali dashboard</a></li>
+                    <li><a href="#Monitoring-with-graphana">6.3.2. Monitoring with Graphana</a></li>
                 </ul>
             </li>
         </ul>
@@ -205,6 +206,26 @@ kubectl -n istio-system port-forward deployment/kiali 20001:20001
 ```
 Launch the console: http://localhost:20001/
 
+Active again carservice:
+
+http://localhost:31380/carservice/cars
+
+Then inspect the cluster in Kiali.
+
+<img src="images/kiali1.png">
+
+#### Monitoring with Graphana
+```
+kubectl -n istio-system port-forward deployment/grafana 3000:3000
+```
+http://localhost:3000/
+
+<img src="images/graphana_resources.png">
+
+<img src="images/graphana_istio_dashboard.png">
+
+<img src="images/graphana-envoy.png">
+
 
 
 ## Composition of services via GraphQL
@@ -217,6 +238,7 @@ https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/resourc
 
 https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/resources/graphql/car.graphqls
 
+Server side coding:
 https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/java/com/charroux/rentalservice/agreements/RentalController.java
 
 
@@ -348,11 +370,6 @@ Kiali is a console for Istio service mesh.
 kubectl -n istio-system port-forward deployment/kiali 20001:20001
 ```
 Launch the console: http://localhost:20001/
-
-Active again carservice: http://localhost:ingressport/carservice/cars, hen inspect the cluster in Kiali.
-http://localhost:ingressport/carservice/cars
-
-<img src="images/kiali1.png">
 
 curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":2}' http://localhost:31380/carservice/cars
 
