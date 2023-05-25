@@ -12,7 +12,8 @@
                 </ul>
             </li>
             <li><a href="#Start-the-docker-daemon">1.2. Start the Docker daemon</a></li>
-            <li><a href="#Start the Minikube cluster">1.3. Start the Minikube clusterr</a></li>
+            <li><a href="#Start the Minikube cluster">1.3. Start the Minikube cluster</a></li>
+            <li><a href="#Deploy-the-app-in-the-minikube-cluster">1.4. Deploy the app in the Minikube cluster</a></li>
         </ul>
     </li>
     <li><a href="#microservices">2. Microservices</a></li>
@@ -50,13 +51,17 @@
 
 ## Start the app
 
-### Start-the-docker-daemon
+### Start the Docker Daemon
 
-Sart Docker
+Start Docker
 
 ### Start the Minikube cluster
 ```
 minikube start --cpus=2 --memory=5000 --driver=docker
+```
+### Deploy the app in the Minikube cluster
+```
+kubectl apply -f servicemesh.yaml
 ```
 
 ## Microservices
