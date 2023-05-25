@@ -8,12 +8,18 @@
                 <ul>
                     <li><a href="#install-docker-and-minikube">1.1.1. Install Docker and Minikube</a></li>
                     <li><a href="#install-istio">1.1.2. Install Istio</a></li>
-                    <li><a href="#build-the-docker-images">1.1.3. Build the Docker images</a></li>
+                    <li><a href="#build-the-docker-images">1.1.3. Build the Docker images (optional)</a></li>
                 </ul>
             </li>
             <li><a href="#Start-the-docker-daemon">1.2. Start the Docker daemon</a></li>
             <li><a href="#Start the Minikube cluster">1.3. Start the Minikube cluster</a></li>
-            <li><a href="#Deploy-the-app-in-the-minikube-cluster">1.4. Deploy the app in the Minikube cluster</a></li>
+            <li><a href="#Deploy-the-app-in-the-minikube-cluster">1.4. Deploy the app in the Minikube cluster</a>
+                <ul>
+                    <li><a href="#Deploy-the-database-and-microservices-gateway">1.4.1. Deploy the database and microservices gateway</a></li>
+                    <li><a href="#Deploy-the-microservices-and-service-mesh-proxies">1.4.2. Deploy the microservices and service mesh proxies</a></li>
+                    <li><a href="#Get-the-access-to-the-ingress-gateway">1.4.3. Get the access to the Ingress gateway</a></li>
+                </ul>
+            </li>
         </ul>
     </li>
     <li><a href="#microservices">2. Microservices</a></li>
@@ -60,10 +66,23 @@ Start Docker
 minikube start --cpus=2 --memory=5000 --driver=docker
 ```
 ### Deploy the app in the Minikube cluster
-```
-kubectl apply -f servicemesh.yaml
-```
 
+##### Deploy the database and microservices gateway
+<img src="images/servicemesh.png">
+
+Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gataway:
+```
+kubectl apply -f infrastructure.yaml
+```
+##### Deploy the microservices and service mesh proxies
+
+```
+kubectl apply -f microservices.yaml
+```
+##### Get the access to the Ingress gateway
+```
+./ingress-forward.sh
+```
 ## Microservices
 
 <img src="images/carservicearchi.png">
