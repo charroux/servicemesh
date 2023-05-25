@@ -2,7 +2,7 @@
 
 <div id="user-content-toc">
   <ul>
-    <li><a href="#1-Microservices">1. Microservices</a></li>
+    <li><a href="#microservices">1. Microservices</a></li>
   </ul>
 </div>
 
