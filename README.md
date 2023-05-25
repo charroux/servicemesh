@@ -42,12 +42,13 @@
   </ul>
 </div>
 
+## Start the app
 
-## Docker
+### Docker
 
 Sart Docker
 
-## Minikube cluster
+### Minikube cluster
 ```
 minikube start --cpus=2 --memory=5000 --driver=docker
 ```
