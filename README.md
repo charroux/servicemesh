@@ -3,33 +3,36 @@
 <div id="user-content-toc">
   <ul>
     <li><a href="#microservices">1. Microservices</a></li>
+    <li><a href="#full-duplex-asynchronous-exchange-via-grpc">2. Full duplex asynchronous exchange via gRPC</a>
+        <ul>
+            <li><a href="#service-contract">2.1. Service contract</a></li>
+        </ul>
+    </li>
+    <li><a href="#data-consistency--distributed-transaction-1">3. Data consistency / distributed transaction</a>
+        <ul>
+            <li><a href="#the-saga-pattern">3.1. The saga patternt</a></li>
+        </ul>
+    </li>
+    <li><a href="#kubernetes">4. Kubernetes</a>
+        <ul>
+            <li><a href="#scalability-and-load-balancing-1">4.1. Scalability and load balancing</a></li>
+            <li><a href="#auto-restart-in-case-of-failure">4.2. Auto restart in case of failure</a></li>
+        </ul>
+    </li>
+    <li><a href="#service-mesh">5. Service mesh</a>
+        <ul>
+            <li><a href="#circuit-breaker">5.1. Circuit breaker</a></li>
+        </ul>
+    </li> 
+    <li><a href="#gateway">6. Gateway</a>
+        <ul>
+            <li><a href="#microservices-service-mesh-proxies-and-routing-via-the-gateway">6.1. Microservices, service mesh proxies and routing via the gateway</a></li>
+        </ul>
+    </li>
+    <li><a href="#composition-of-services">7. Composition of services</a></li>
   </ul>
 </div>
 
-<div id="user-content-toc">
-  <ul>
-    <li><a href="## Microservices">1. Microservices</a>
-      <ul>
-        <li><a href="#11-the-full-development-workflow">1.1. The Full Development Workflow</a>
-          <ul>
-            <li><a href="#111-compiling-with-typescript">1.1.1. Compiling with TypeScript</a></li>
-            <li><a href="#112-testing-with-npm">1.1.2. Testing with NPM</a></li>
-            <li><a href="#113-bundling-everything-together-with-webpack">1.1.3. Bundling everything together with Webpack</a></li>
-            <li><a href="#114-running-a-live-server">1.1.4. Running a Live Server</a></li>
-          </ul>
-        </li>
-        <li><a href="#12-formatting">1.2. Formatting</a></li>
-        <li><a href="#13-snippets">1.3. Snippets</a></li>
-        <li><a href="#14-go-sgf-viewers">1.4. Go SGF Viewers</a>
-          <ul>
-            <li><a href="#141-glift">1.4.1. Glift</a></li>
-            <li><a href="#141-wgojs">1.4.2. WGo.js</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>
 
 ### Cloud native / DevOps
 ### Scalability and load balancing
@@ -60,8 +63,7 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/proto/cars
 
 https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
 
-
-## Service mesh
+## Kubernetes
 ### Scalability and load balancing
 
 <img src="images/scaling.png">
@@ -78,9 +80,17 @@ Start a second instance:
 kubectl scale --replicas=2 deployment/[deployment name]
 ```
 
-### Fault tolerance without coding
+### Auto restart in case of failure
+```
+kubectl get pods
+```
+```
+kubectl delete pods [pod name]
+```
 
-#### Circuit breaker
+## Service mesh
+
+### Circuit breaker
 <img src="images/circuit_breaker.png">
 
 Adding a circuit breaker to carservice:
@@ -94,15 +104,10 @@ Disable the circuit breaker using:
 ```
 kubectl delete -f circuit-breaker.yaml
 ```
-#### Auto restart in case of failure
-```
-kubectl get pods
-```
-```
-kubectl delete pods [pod name]
-```
 
-### API gateway / composition of services
+
+### Gateway
+
 <img src="images/servicemesh.png">
 
 https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
@@ -119,6 +124,7 @@ Ask carservice the list of cars:
 ```
 http://localhost:31380/carservice/cars
 ```
+
 
 ### Monotoring
 #### Display the Kiali dashboard
