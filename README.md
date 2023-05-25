@@ -2,6 +2,12 @@
 
 <div id="user-content-toc">
   <ul>
+    <li><a href="#1-Microservices">1. Microservices</a></li>
+  </ul>
+</div>
+
+<div id="user-content-toc">
+  <ul>
     <li><a href="#1-Microservices">1. Microservices</a>
       <ul>
         <li><a href="#11-the-full-development-workflow">1.1. The Full Development Workflow</a>
