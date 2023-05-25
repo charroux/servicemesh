@@ -54,7 +54,6 @@
     </li>
     <li><a href="#composition-of-services-via-graphql">7. Composition of services via GraphQL</a></li>
     <li><a href="#Delete-resources-and-stop-the-cluster">8. Delete resources and stop the cluster</a></li>
-    <li><a href="#how-to-build-and-run">9. How to build and run</a></li>
   </ul>
 </div>
 
