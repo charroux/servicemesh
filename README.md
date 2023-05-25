@@ -312,7 +312,13 @@ eval $(minikube -p minikube docker-env)
 eval $(minikube docker-env)  
 ```
 
-## Build the Docker images
+## Build the Docker images (optional)
+
+Dockers images have been alreaddy build. You can find those images in the Docker hub : 
+
+https://hub.docker.com/search?q=charroux
+
+So you can skip the next steps.
 
 Build the postgres image:
 ```
