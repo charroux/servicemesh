@@ -51,7 +51,7 @@
             </li>
         </ul>
     </li>
-    <li><a href="#composition-of-services">7. Composition of services</a></li>
+    <li><a href="#composition-of-services-via-graphql">7. Composition of services via GraphQL</a></li>
     <li><a href="#how-to-build-and-run">8. How to build and run</a></li>
   </ul>
 </div>
@@ -84,6 +84,15 @@ kubectl apply -f microservices.yaml
 ```
 ./ingress-forward.sh
 ```
+Get the list of cars to be rented:
+```
+http://localhost:31380/carservice/cars
+```
+Rent 2 cars:
+```
+curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":2}' http://localhost:31380/carservice/cars
+```
+
 ## Microservices
 
 <img src="images/carservicearchi.png">
@@ -116,6 +125,13 @@ https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/c
 ### Pod and Service
 
 <img src="images/pod_service.png">
+
+```
+kubectl get pods
+```
+```
+kubectl get services
+```
 
 https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
 
@@ -191,181 +207,17 @@ Launch the console: http://localhost:20001/
 
 
 
-## Composition of services
+## Composition of services via GraphQL
 
 <img src="images/composition.png">
 
-## How to build and run
+https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/resources/graphql/rentalAgreement.graphqls
 
-## Docker and Kubernetes
-Start Docker.
+https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/resources/graphql/customer.graphqls
 
-Start the Kubernetes cluster:
-```
-minikube start --cpus=2 --memory=5000 --driver=docker
-```
-## Database and microservices gateway
-<img src="images/servicemesh.png">
+https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/resources/graphql/car.graphqls
 
-Launch the Kubernetes deployment and service for PostgreSQL, and the Ingress gataway:
-```
-kubectl apply -f infrastructure.yaml
-```
-## Microservices and service mesh proxies
-
-```
-kubectl apply -f microservices.yaml
-```
-## Get the access to the Ingress gateway
-```
-./ingress-forward.sh
-```
-```
-kubectl -n istio-system port-forward deployment/istio-ingressgateway 31380:8080
-```
-Ask carservice the list of cars:
-```
-http://localhost:31380/carservice/cars
-```
-
-## Fault tolerance without coding
-
-### Circuit breaker
-<img src="images/circuit_breaker.png">
-
-Adding a circuit breaker to carservice:
-```
-kubectl apply -f circuit-breaker.yaml
-```
-Test the circuit breaker:
-http://localhost:31380/carservice/cars
-
-Disable the circuit breaker using:
-```
-kubectl delete -f circuit-breaker.yaml
-```
-### Auto restart in case of failure
-```
-kubectl get pods
-```
-```
-kubectl delete pods [pod name]
-```
-
-## Scaling and Load balancing without coding
-<img src="images/scaling.png">
-
-How many instance are actually running:
-```
-kubectl get pods
-```
-```
-kubectl get deployments
-```
-Start a second instance:
-```
-kubectl scale --replicas=2 deployment/[deployment name]
-```
-## Monotoring
-### Display the Kiali dashboard
-Kiali is a console for Istio service mesh.
-```
-kubectl -n istio-system port-forward deployment/kiali 20001:20001
-```
-Launch the console: http://localhost:20001/
-## Stop the app
-```
-kubectl delete -f microservices.yaml
-```
-```
-kubectl delete -f infrastructure.yaml
-```
-# Rest Web service implementation
-<img src="images/carservicearchi.png">
-
-## Rest web service
-https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
-
-# gRPC
-## Service contract
-https://github.com/charroux/servicemesh/blob/main/carservice/src/main/proto/carservice.proto
-<img src="images/full_duplex.png">
-
-## Client side
-https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
-## Server side
-https://github.com/charroux/servicemesh/blob/main/carstat/src/main/java/com/charroux/carstat/CarRentalServiceImpl.java
-
-# Distributed transactions
-## The saga pattern
-<img src="images/sagapattern.png">
-
-<img src="images/saga.png">
-
-https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/service/RentalServiceImpl.java
-
-# Kubernetes
-
-
-Launch the Kubernetes deployment and service for PostgreSQL:
-```
-kubectl apply -f infrastructure.yaml
-```
-```
-minikube dashboard
-```
-## Ingress gateway
-<img src="images/servicemesh.png">
-
-https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
-### Microservices, service mesh proxies and routing via the gateway
-```
-kubectl apply -f microservices.yaml
-```
-https://github.com/charroux/servicemesh/blob/main/microservices.yaml
-### Get the access to the Ingress gateway
-```
-./ingress-forward.sh
-```
-Ask carservice the list of cars:
-```
-http://localhost:31380/carservice/cars
-```
-# Service mesh
-## Fault tolerance
-### Circuit breaker
-<img src="images/circuit_breaker.png">
-
-Adding a circuit breaker to carservice:
-```
-kubectl apply -f circuit-breaker.yaml
-```
-Test the circuit breaker:
-http://localhost:31380/carservice/cars
-
-https://github.com/charroux/servicemesh/blob/main/circuit-breaker.yaml
-
-Disable the circuit breaker using:
-```
-kubectl delete -f circuit-breaker.yaml
-```
-
-## Scaling and Load balancing without coding
-<img src="images/scaling.png">
-
-How many instance are actually running:
-```
-kubectl get pods
-```
-```
-kubectl get deployments
-```
-Start a second instance:
-```
-kubectl scale --replicas=2 deployment/[deployment name]
-```
-
-curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":2}' http://localhost:31380/carservice/cars
+https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/java/com/charroux/rentalservice/agreements/RentalController.java
 
 
 # Requirements
