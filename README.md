@@ -53,7 +53,8 @@
         </ul>
     </li>
     <li><a href="#composition-of-services-via-graphql">7. Composition of services via GraphQL</a></li>
-    <li><a href="#how-to-build-and-run">8. How to build and run</a></li>
+    <li><a href="#Delete-resources-and-stop-the-cluster">8. Delete resources and stop the cluster</a></li>
+    <li><a href="#how-to-build-and-run">9. How to build and run</a></li>
   </ul>
 </div>
 
@@ -135,6 +136,26 @@ kubectl get services
 ```
 
 https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
+
+Enter inside the Docker containers:
+```
+kubectl exec -it [pod name] -- /bin/sh
+```
+```
+ls
+```
+You should view the java jar file.
+```
+exit
+```
+Use Minikube to reach the carservice:
+```
+minikube service carservice --url
+```
+```
+http://127.0.0.1:[port]/cars
+```
+
 
 ### Scalability and load balancing
 
@@ -241,6 +262,16 @@ https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/resourc
 Server side coding:
 https://github.com/charroux/servicemesh/blob/main/rentalservice/src/main/java/com/charroux/rentalservice/agreements/RentalController.java
 
+## Delete resources and stop the cluster
+```
+kubectl delete -f infrastructure.yaml
+```
+```
+kubectl delete -f microservices.yaml
+```
+```
+minikube stop
+```
 
 # Requirements
 ## Install Docker and Minikube
@@ -393,6 +424,3 @@ curl --header "Content-Type: application/json" --request POST --data '{"customer
 curl --header "Content-Type: application/json" --request POST --data '{"customerId":1,"numberOfCars":1}' http://localhost:31380/carservice/cars
 
 
-kubectl delete -f infrastructure.yaml
-
-kubectl delete -f microservices.yaml
