@@ -21,7 +21,8 @@
     </li>
     <li><a href="#service-mesh">5. Service mesh</a>
         <ul>
-            <li><a href="#circuit-breaker">5.1. Circuit breaker</a></li>
+            <li><a href="#microservices-service-mesh-proxies-and-routing-via-the-gateway">5.1. Microservices, service mesh proxies and routing via the gateway</a></li>
+            <li><a href="#circuit-breaker">5.2. Circuit breaker</a></li>
         </ul>
     </li> 
     <li><a href="#gateway">6. Gateway</a>
@@ -105,13 +106,12 @@ Disable the circuit breaker using:
 kubectl delete -f circuit-breaker.yaml
 ```
 
-
-### Gateway
+### Microservices, service mesh proxies and routing via the gateway
 
 <img src="images/servicemesh.png">
 
 https://github.com/charroux/servicemesh/blob/main/infrastructure.yaml
-#### Microservices, service mesh proxies and routing via the gateway
+
 ```
 kubectl apply -f microservices.yaml
 ```
