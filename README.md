@@ -23,14 +23,15 @@
         <ul>
             <li><a href="#microservices-service-mesh-proxies-and-routing-via-the-gateway">5.1. Microservices, service mesh proxies and routing via the gateway</a></li>
             <li><a href="#circuit-breaker">5.2. Circuit breaker</a></li>
-        </ul>
-    </li> 
-    <li><a href="#gateway">6. Gateway</a>
-        <ul>
-            <li><a href="#microservices-service-mesh-proxies-and-routing-via-the-gateway">6.1. Microservices, service mesh proxies and routing via the gateway</a></li>
+            <li><a href="#monotoring">5.3. Monotoring</a>
+                <ul>
+                    <li><a href="#display-the-kiali-dashboard">5.3.1. Display the Kiali dashboard</a></li>
+                </ul>
+            </li>
         </ul>
     </li>
     <li><a href="#composition-of-services">7. Composition of services</a></li>
+    <li><a href="#how-to-build-and-run">8. How to build and run</a></li>
   </ul>
 </div>
 
@@ -91,20 +92,6 @@ kubectl delete pods [pod name]
 
 ## Service mesh
 
-### Circuit breaker
-<img src="images/circuit_breaker.png">
-
-Adding a circuit breaker to carservice:
-```
-kubectl apply -f circuit-breaker.yaml
-```
-Test the circuit breaker:
-http://localhost:31380/carservice/cars
-
-Disable the circuit breaker using:
-```
-kubectl delete -f circuit-breaker.yaml
-```
 
 ### Microservices, service mesh proxies and routing via the gateway
 
@@ -124,8 +111,20 @@ Ask carservice the list of cars:
 ```
 http://localhost:31380/carservice/cars
 ```
+### Circuit breaker
+<img src="images/circuit_breaker.png">
 
+Adding a circuit breaker to carservice:
+```
+kubectl apply -f circuit-breaker.yaml
+```
+Test the circuit breaker:
+http://localhost:31380/carservice/cars
 
+Disable the circuit breaker using:
+```
+kubectl delete -f circuit-breaker.yaml
+```
 ### Monotoring
 #### Display the Kiali dashboard
 Kiali is a console for Istio service mesh.
@@ -134,9 +133,13 @@ kubectl -n istio-system port-forward deployment/kiali 20001:20001
 ```
 Launch the console: http://localhost:20001/
 
+
+
 ## Composition of services
 
 <img src="images/composition.png">
+
+## How to build and run
 
 ## Docker and Kubernetes
 Start Docker.
