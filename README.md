@@ -348,4 +348,19 @@ cd ..
 docker build --tag=charroux/customer:1 customer  
 docker push charroux/customer:1  
 ```
+Build the graphQL app:
+```
+cd rentalservice
+./gradlew build
+cd ..
+docker build --tag=charroux/rentalservice:1 rentalservice  
+docker push charroux/rentalservice:1  
+```
+Build the React app:
+```
+docker build --tag=charroux/carental:1 carental
+docker push charroux/carental:1 
+```
 
+
+# cloud-native-app

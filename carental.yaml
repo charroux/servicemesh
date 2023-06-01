@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: carental
+    version: "1.0"
+  name: carental
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carental
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: carental
+    spec:
+      containers:
+      - name: carental
+        image: charroux/carental:1
+        imagePullPolicy: Always
+        env:
+          - name: GRAPHQL_SERVICE_HOST
+            value: "http://localhost"
+          - name: GRAPHQL_SERVICE_PORT
+            value: "8080"
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: carental
+  name: carental
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+    name: http    
+  selector:
+    app: carental
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: rentalservice
+  name: rentalservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: rentalservice
+  template:
+    metadata:
+      labels:
+        run: rentalservice
+    spec:
+      containers:
+        - name: rentalservice
+          image: charroux/rentalservice:1
+          imagePullPolicy: Always
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: rentalservice
+  name: rentalservice
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      name: http
+  selector:
+    app: rentalservice
+  type: NodePort
+status:
+  loadBalancer: {}
