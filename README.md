@@ -35,16 +35,16 @@
     </li>
     <li><a href="#continuous-integration-with-github-actions">5. Continuous Integration with Github Actions</a>
         <ul>
-            <li><a href="#Pod-and-service">5.1. Pod and Service</a></li>
-            <li><a href="#scalability-and-load-balancing-1">5.1. Scalability and load balancing</a></li>
-            <li><a href="#auto-restart-in-case-of-failure">5.2. Auto restart in case of failure</a></li>
+            <li><a href="#the-ci-workflow">5.1. The CI workflow</a></li>
+            <li><a href="#build-and-tests">5.2. Build and tests</a></li>
+            <li><a href="#launch-a-workflow-when-the-code-is-updated">5.3. Launch a workflow when the code is updated</a></li>
         </ul>
     </li>
     <li><a href="#kubernetes">6. Kubernetes</a>
         <ul>
             <li><a href="#Pod-and-service">6.1. Pod and Service</a></li>
-            <li><a href="#scalability-and-load-balancing-1">6.1. Scalability and load balancing</a></li>
-            <li><a href="#auto-restart-in-case-of-failure">6.2. Auto restart in case of failure</a></li>
+            <li><a href="#scalability-and-load-balancing-1">6.2. Scalability and load balancing</a></li>
+            <li><a href="#auto-restart-in-case-of-failure">6.3. Auto restart in case of failure</a></li>
         </ul>
     </li>
     <li><a href="#service-mesh">7. Service mesh</a>
@@ -191,12 +191,60 @@ kubectl delete pods [pod name]
 
 GitHub Actions allows to automate, customize, and execute development workflows right in a repository.
 
+### The CI workflow
+
+https://github.com/charroux/servicemesh/blob/main/.github/workflows/actions.yml
+
+Kubernetes configuration to test a service in isolation: https://github.com/charroux/servicemesh/blob/main/deploymentaction.yaml
+
 ### Build and tests
 
-#### Unit testing
+In memory database for unit testing in order to test a service in isolation: https://github.com/charroux/servicemesh/blob/main/carservice/src/test/resources/application.properties
 
-#### Integration tests
+Entities test: https://github.com/charroux/servicemesh/blob/main/carservice/src/test/java/com/charroux/carservice/entity/CarRepositoryTests.java
 
+Use of mocks to test service in isolation: https://github.com/charroux/servicemesh/blob/main/carservice/src/test/java/com/charroux/carservice/service/RentalServiceTests.java
+
+Microservice tests: https://github.com/charroux/servicemesh/blob/main/carservice/src/test/java/com/charroux/carservice/web/CarRentalRestServiceTests.java
+
+### Launch a workflow when the code is updated
+Check an existing workflow: https://github.com/charroux/servicemesh/actions
+
+Create a new branch: 
+```
+git branch newcarservice
+```
+Move to the new branch:
+```
+git checkout editcontroller
+```
+Update the code and commit changes:
+```
+git commit -m "newcarservice"
+```
+Push the changes to GitHub:
+```
+git push -u origin newcarservice
+```
+Create a Pull request on GitHub and follow the workflow.
+
+Delete the branch:
+```
+git checkout main
+```
+```
+git branch -D newcarservice
+```
+```
+git push origin --delete newcarservice
+```
+Select branch editcontroller on Github
+
+Pull request
+
+Compare and pull request => create pull request
+
+Check actions
 ## Service mesh
 
 

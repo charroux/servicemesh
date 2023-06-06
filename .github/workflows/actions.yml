@@ -12,11 +12,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Start minikube
+      - name: Start Kubernetes minikube
         uses: medyagh/setup-minikube@master
-      - name: Try the cluster !
+      - name: Try the Kubernetes cluster
         run: kubectl get pods -A
-      - name: Build image
+      - name: Build test and build docker image
         run: |
           export SHELL=/bin/bash
           eval $(minikube -p minikube docker-env)
@@ -26,21 +26,21 @@ jobs:
           echo -n "verifying images:"
           docker images
           cd ..
-      - name: Deploy to minikube
+      - name: Deploy the image to minikube
         run:
           kubectl apply -f deploymentaction.yaml
-      - name: Get service URL
+      - name: Get Kubernetes service URL
         run: |
           kubectl get pods
           minikube service list
           minikube service carservice --url
           echo "------------------opening the service------------------"
-      - name: Test service URL
+      - name: Test Kubernetes service URL
         uses: nick-fields/retry@v2
         with:
           timeout_seconds: 10
           max_attempts: 4
           command: curl $(minikube service carservice --url)/cars
-      - name: Log pods
+      - name: Log Kubernetes pods
         run: |
           kubectl logs $(kubectl get pods -l app=carservice -o name)
