@@ -4,7 +4,7 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    name: build example and deploy to minikube
+    name: build and deploy to minikube
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 17
@@ -40,4 +40,4 @@ jobs:
         with:
           timeout_seconds: 10
           max_attempts: 3
-          command: curl $(minikube service carservice --url)
+          command: curl $(minikube service carservice --url)/cars
