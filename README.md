@@ -216,11 +216,11 @@ git branch newcarservice
 ```
 Move to the new branch:
 ```
-git checkout editcontroller
+git checkout newcarservice
 ```
 Update the code and commit changes:
 ```
-git commit -m "newcarservice"
+git commit -a -m "newcarservice"
 ```
 Push the changes to GitHub:
 ```
@@ -238,13 +238,7 @@ git branch -D newcarservice
 ```
 git push origin --delete newcarservice
 ```
-Select branch editcontroller on Github
 
-Pull request
-
-Compare and pull request => create pull request
-
-Check actions
 ## Service mesh
 
 
