@@ -41,3 +41,6 @@ jobs:
           timeout_seconds: 10
           max_attempts: 3
           command: curl $(minikube service carservice --url)/cars
+      - name: Log pods
+        run: |
+          kubectl logs $(kubectl get pods -l app=carservice -o name)
