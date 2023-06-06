@@ -29,13 +29,13 @@ jobs:
       - name: Deploy to minikube
         run:
           kubectl apply -f deploymentaction.yaml
-      - name: Get service URLs
+      - name: Get service URL
         run: |
           kubectl get pods
           minikube service list
           minikube service carservice --url
           echo "------------------opening the service------------------"
-      - name: Test service URLs
+      - name: Test service URL
         uses: nick-fields/retry@v2
         with:
           timeout_seconds: 10
