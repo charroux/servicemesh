@@ -33,27 +33,34 @@
             <li><a href="#the-saga-pattern">4.1. The saga pattern</a></li>
         </ul>
     </li>
-    <li><a href="#kubernetes">5. Kubernetes</a>
+    <li><a href="#continuous-integration-with-github-actions">5. Continuous Integration with Github Actions</a>
         <ul>
             <li><a href="#Pod-and-service">5.1. Pod and Service</a></li>
             <li><a href="#scalability-and-load-balancing-1">5.1. Scalability and load balancing</a></li>
             <li><a href="#auto-restart-in-case-of-failure">5.2. Auto restart in case of failure</a></li>
         </ul>
     </li>
-    <li><a href="#service-mesh">6. Service mesh</a>
+    <li><a href="#kubernetes">6. Kubernetes</a>
         <ul>
-            <li><a href="#microservices-service-mesh-proxies-and-routing-via-the-gateway">6.1. Microservices, service mesh proxies and routing via the gateway</a></li>
-            <li><a href="#circuit-breaker">6.2. Circuit breaker</a></li>
-            <li><a href="#monotoring">6.3. Monotoring</a>
+            <li><a href="#Pod-and-service">6.1. Pod and Service</a></li>
+            <li><a href="#scalability-and-load-balancing-1">6.1. Scalability and load balancing</a></li>
+            <li><a href="#auto-restart-in-case-of-failure">6.2. Auto restart in case of failure</a></li>
+        </ul>
+    </li>
+    <li><a href="#service-mesh">7. Service mesh</a>
+        <ul>
+            <li><a href="#microservices-service-mesh-proxies-and-routing-via-the-gateway">7.1. Microservices, service mesh proxies and routing via the gateway</a></li>
+            <li><a href="#circuit-breaker">7.2. Circuit breaker</a></li>
+            <li><a href="#monotoring">7.3. Monotoring</a>
                 <ul>
-                    <li><a href="#display-the-kiali-dashboard">6.3.1. Display the Kiali dashboard</a></li>
-                    <li><a href="#Monitoring-with-graphana">6.3.2. Monitoring with Graphana</a></li>
+                    <li><a href="#display-the-kiali-dashboard">7.3.1. Display the Kiali dashboard</a></li>
+                    <li><a href="#Monitoring-with-graphana">7.3.2. Monitoring with Graphana</a></li>
                 </ul>
             </li>
         </ul>
     </li>
-    <li><a href="#composition-of-services-via-graphql">7. Composition of services via GraphQL</a></li>
-    <li><a href="#Delete-resources-and-stop-the-cluster">8. Delete resources and stop the cluster</a></li>
+    <li><a href="#composition-of-services-via-graphql">8. Composition of services via GraphQL</a></li>
+    <li><a href="#Delete-resources-and-stop-the-cluster">9. Delete resources and stop the cluster</a></li>
   </ul>
 </div>
 
@@ -179,6 +186,16 @@ kubectl get pods
 ```
 kubectl delete pods [pod name]
 ```
+
+## Continuous Integration with GitHub Actions
+
+GitHub Actions allows to automate, customize, and execute development workflows right in a repository.
+
+### Build and tests
+
+#### Unit testing
+
+#### Integration tests
 
 ## Service mesh
 
