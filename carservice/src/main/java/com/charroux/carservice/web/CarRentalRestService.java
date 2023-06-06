@@ -3,6 +3,8 @@ package com.charroux.carservice.web;
 import com.charroux.carservice.entity.Car;
 import com.charroux.carservice.entity.RentalAgreement;
 import com.charroux.carservice.service.RentalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 public class CarRentalRestService {
 
     RentalService rentalService;
+
+    Logger logger = LoggerFactory.getLogger(CarRentalRestService.class);
 
     @Autowired
     public CarRentalRestService(RentalService rentalService) {
