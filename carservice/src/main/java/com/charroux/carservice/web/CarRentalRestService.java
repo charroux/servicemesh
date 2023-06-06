@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class CarRentalRestService {
 
     Logger logger = LoggerFactory.getLogger(CarRentalRestService.class);
-    
+
     RentalService rentalService;
 
     @Autowired
