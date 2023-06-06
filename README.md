@@ -193,6 +193,8 @@ GitHub Actions allows to automate, customize, and execute development workflows 
 
 ### The CI workflow
 
+<img src="images/workflow.png">
+
 https://github.com/charroux/servicemesh/blob/main/.github/workflows/actions.yml
 
 Kubernetes configuration to test a service in isolation: https://github.com/charroux/servicemesh/blob/main/deploymentaction.yaml
