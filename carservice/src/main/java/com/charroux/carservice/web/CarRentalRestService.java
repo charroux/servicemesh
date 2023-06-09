@@ -22,6 +22,8 @@ public class CarRentalRestService {
 
     RentalService rentalService;
 
+    int i = 0;
+    
     @Autowired
     public CarRentalRestService(RentalService rentalService) {
         super();

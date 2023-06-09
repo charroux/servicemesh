@@ -61,6 +61,15 @@
     </li>
     <li><a href="#composition-of-services-via-graphql">8. Composition of services via GraphQL</a></li>
     <li><a href="#Delete-resources-and-stop-the-cluster">9. Delete resources and stop the cluster</a></li>
+    <li><a href="#the-fifteen-factor-apps-by-example">10. The fifteen factor apps by example</a>
+        <ul>
+            <li><a href="#one-codebase-tracked-in-revision-control-but-many-deploys">10.1. One codebase tracked in revision control but many deploys</a></li>
+            <li><a href="#execute-the-app-as-one-or-more-stateless-processes">10.2. Execute the app as one or more stateless processes</a></li>
+            <li><a href="#explicitly-declare-and-isolate-dependencies">10.3. Explicitly declare and isolate dependencies</a></li>
+            <li><a href="#strictly-separate-build-and-run-stages">10.4. Strictly separate build and run stages</a></li>
+            <li><a href="#keep-development-staging-and-production-as-similar-as-possible">10.5. Keep development staging and production as similar as possible</a></li>
+        </ul>
+    </li>
   </ul>
 </div>
 
@@ -422,6 +431,28 @@ Build the React app:
 docker build --tag=charroux/carental:1 carental
 docker push charroux/carental:1 
 ```
+# The fifteen factor apps by example
 
+## One codebase tracked in revision control but many deploys
 
-# cloud-native-app
+The same code is deployed without the service mesh during the Continuous Integration: https://github.com/charroux/servicemesh/blob/main/deploymentaction.yaml
+
+While service mesh is used in production.
+
+## Execute the app as one or more stateless processes
+
+Microservices are stateless. They just have a link to underlying services: https://github.com/charroux/servicemesh/blob/main/carservice/src/main/java/com/charroux/carservice/web/CarRentalRestService.java
+
+## Explicitly declare and isolate dependencies
+
+Each service declares its dependencies: https://github.com/charroux/servicemesh/blob/main/carservice/build.gradle
+
+## Strictly separate build and run stages
+
+Build is composed of two steps:
+- create a binary version of the coe
+- encapsulate this binery in a Docker image
+
+Run deploys the Docker image in a Kubernetes cluter.
+
+## Keep development staging and production as similar as possible
