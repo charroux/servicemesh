@@ -22,7 +22,8 @@ public class CarRentalRestService {
 
     RentalService rentalService;
 
-    int i = 0;
+    int i = 1;
+    int h = 0;
     
     @Autowired
     public CarRentalRestService(RentalService rentalService) {
