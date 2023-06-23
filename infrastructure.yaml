@@ -28,11 +28,9 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
-          env:
-            - name: POSTGRES_USER
-              value: "dbuser"
-            - name: POSTGRES_PASSWORD
-              value: "dbpass"
+          envFrom:
+            - configMapRef:
+                name: postgres-config
           resources: {}
           volumeMounts:
             - name: postgres

@@ -76,6 +76,11 @@ minikube start --cpus=2 --memory=5000 --driver=docker
 ```
 ### Deploy the app in the Minikube cluster
 
+Set the Kubernetes config
+```
+kubectl apply -f configmap.yaml
+```
+
 ##### Deploy the database and microservices gateway
 <img src="images/servicemesh.png">
 
