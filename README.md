@@ -312,7 +312,11 @@ http://localhost:3000/
 
 <img src="images/graphana-envoy.png">
 
-
+#### Monitoring with Jaeger
+```
+kubectl port-forward -n istio-system $(kubectl get pod -n istio-system -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686
+```
+Launch the console: http://localhost:16686/
 
 ## Composition of services via GraphQL
 
