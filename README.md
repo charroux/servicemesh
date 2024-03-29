@@ -80,7 +80,10 @@ Set the Kubernetes config
 ```
 kubectl apply -f configmap.yaml
 ```
-
+Set the Kubernetes secret
+```
+kubectl apply -f secret.yaml
+```
 ##### Deploy the database and microservices gateway
 <img src="images/servicemesh.png">
 
