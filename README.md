@@ -45,6 +45,7 @@
             <li><a href="#Pod-and-service">6.1. Pod and Service</a></li>
             <li><a href="#scalability-and-load-balancing-1">6.2. Scalability and load balancing</a></li>
             <li><a href="#auto-restart-in-case-of-failure">6.3. Auto restart in case of failure</a></li>
+            <li><a href="#chech-the-health-of-an-application">6.4. Chech the health of an application</a></li>
         </ul>
     </li>
     <li><a href="#service-mesh">7. Service mesh</a>
@@ -98,7 +99,7 @@ kubectl apply -f microservices.yaml
 ```
 ##### Get the access to the Ingress gateway
 ```
-./ingress-forward.sh
+kubectl -n istio-system port-forward deployment/istio-ingressgateway 31380:8080
 ```
 Get the list of cars to be rented:
 ```
@@ -194,6 +195,47 @@ kubectl get pods
 ```
 kubectl delete pods [pod name]
 ```
+
+### Chech the health of an application
+A probe is a mechanism used to determine the health of an application running in a container. 
+Kubernetes uses probes to know when a container will be restarted, ready, and started.
+
+#### Liveness Probe
+Checks whether the application running inside the container is still alive and functioning properly. 
+If the liveness probe fails, Kubernetes considers the container to be in a failed state and restarts it. 
+
+#### Readiness Probe
+Determines whether the application inside the container is ready to accept traffic or requests. 
+When a readiness probe fails, Kubernetes stops sending traffic to the container until it passes the probe. 
+This is useful during application startup or when the application needs some time to initialize before serving traffic.
+
+Health probes must be enabled by the app. See
+```
+management.health.probes.enabled=true
+```
+In https://github.com/charroux/servicemesh/blob/main/carservice/src/main/resources/application.properties
+
+Actuator must be added as library. See
+```
+implementation 'org.springframework.boot:spring-boot-starter-actuator'
+```
+In https://github.com/charroux/servicemesh/blob/main/carservice/build.gradle
+
+Liveness and Readiness must be configured by kubernetes. See
+```
+        livenessProbe:
+          initialDelaySeconds: 180
+          httpGet:
+            path: /actuator/health
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+```
+In https://github.com/charroux/servicemesh/blob/main/microservices.yaml
+
+On the services are launched, they display the probes at (throw the gateway): http://localhost:31380/carservice/actuator/health
 
 ## Continuous Integration with GitHub Actions
 
