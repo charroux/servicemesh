@@ -30,6 +30,7 @@ public class CarRentalRestService {
 
     @GetMapping("/cars")
     public List<Car> getListOfCars(){
+        System.out.println("oj");
         return rentalService.carsToBeRented();
     }
 
