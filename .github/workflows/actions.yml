@@ -22,6 +22,7 @@ jobs:
           eval $(minikube -p minikube docker-env)
           cd carservice
           ./gradlew build
+          eval $(minikube docker-env)
           docker build -f ./Dockerfile -t local/carservice .
           echo -n "verifying images:"
           docker images
@@ -31,6 +32,8 @@ jobs:
           kubectl apply -f deploymentaction.yaml
       - name: Get Kubernetes service URL
         run: |
+          kubectl wait --for=condition=Ready --timeout=60s pod -l app=postgres
+          kubectl wait --for=condition=Ready --timeout=60s pod -l app=carservice
           kubectl get pods
           minikube service list
           minikube service carservice --url
