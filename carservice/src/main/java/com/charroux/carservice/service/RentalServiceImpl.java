@@ -30,7 +30,6 @@ public class RentalServiceImpl implements RentalService {
     CarRepository carRepository;
     RentalAgreementRepository rentalAgreementRepository;
 
-    Logger lgger ;
     @Autowired
     public RentalServiceImpl(CarRepository carRepository, RentalAgreementRepository rentalAgreementRepository) {
         super();
@@ -57,9 +56,6 @@ public class RentalServiceImpl implements RentalService {
         public void onNext(Agreement agreement) {
             String creditReservedEvent = agreement.getCreditReservedEvent();
 
-            lor.inf
-
-                    
             switch (creditReservedEvent) {
                 case "CREDIT_RESERVED" :
                     rentalAgreement.setState(RentalAgreement.State.CREDIT_RESERVED);
