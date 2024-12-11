@@ -1,0 +1,16 @@
+{
+    "cars": [
+        {
+            "plateNumber": "AA11BB",
+            "brand": "Ferrari",
+            "price": 3000,
+            "photo": "assets/ferrari.svg"
+        },
+        {
+            "plateNumber": "BB22CC",
+            "brand": "Porsche",
+            "price": 2000,
+            "photo": "assets/porsche.svg"
+        }
+    ]
+}
